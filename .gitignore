@@ -1,0 +1,7 @@
+# Local diagnostic output and private configuration
+.env
+.env.*
+*.log
+*.dmp
+reports/
+backups/
