@@ -80,4 +80,8 @@ Run from a checkout or extracted release in Windows PowerShell:
 .\scripts\invoke-mole.ps1 -Action CleanPreview
 ```
 
-Choose any supported agent skills directory or give the agent the installed SKILL.md path. Setup validates the package, copies files, and backs up previous package files under %LOCALAPPDATA%\WCB\skill-backups. Restore a backup by copying its files back into the skill directory. Setup can run offline and creates no scheduled tasks. For Mole actions, use an existing official Windows installation or follow the [Windows reference](references/mole-windows.md) for installation and the list of supported commands.
+Choose any supported agent skills directory or give the agent the installed SKILL.md path. Setup validates the package, copies files, and backs up previous package files under %LOCALAPPDATA%\WCB\skill-backups. Restore a backup by copying its files back into the skill directory. Setup creates no scheduled tasks. See the [Windows reference](references/mole-windows.md) for supported commands.
+
+## Version 1.5.0
+
+Setup and the first Mole command automatically provision Mole. WCB reuses its managed copy or a compatible existing Windows installation. If neither is present, WCB downloads the official pinned x64 release, verifies its SHA-256 digest, and installs it for the current user. Later runs work with that local copy. The first download requires internet access. Hourly WCB CPU sampling remains independent of Mole.

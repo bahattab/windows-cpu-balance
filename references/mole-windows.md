@@ -1,8 +1,8 @@
 # Mole CLI for Windows
 
-WCB calls the optional [upstream Mole Windows CLI](https://github.com/tw93/Mole/tree/windows) as a separate program. Tested with [V1.46.0-windows](https://github.com/tw93/Mole/releases/tag/V1.46.0-windows). Mole is maintained by tw93 under GPL-3.0. See the [upstream agent skill](https://github.com/tw93/Mole/blob/main/skills/mole/SKILL.md) for its complete workflow.
+WCB calls the [upstream Mole Windows CLI](https://github.com/tw93/Mole/tree/windows) as a separate program. Tested with [V1.46.0-windows](https://github.com/tw93/Mole/releases/tag/V1.46.0-windows). Mole is maintained by tw93 under GPL-3.0. See the [upstream agent skill](https://github.com/tw93/Mole/blob/main/skills/mole/SKILL.md) for its complete workflow.
 
-Install Mole from the official Windows release or through Scoop using `scoop install mole`. Ensure the upstream `mo.cmd` launcher is on PATH. WCB setup uses an existing installation and core WCB sampling works independently.
+WCB setup and every Mole action ensure Mole is ready automatically. They reuse a compatible Windows CLI version 1.46.0 or later on PATH, or download the pinned official x64 release, verify its SHA-256 digest, and install it under %LOCALAPPDATA%\WCB\Mole\1.46.0. The first download needs internet access. Subsequent actions reuse the local package. The managed copy is per user and requires no administrator access or PATH change. To remove it, delete only that version directory. WCB will reinstall it on the next Mole action.
 
 | WCB action | Upstream command | Purpose |
 | --- | --- | --- |

@@ -5,7 +5,7 @@ if ($env:OS -ne 'Windows_NT') { throw 'WCB setup requires Windows.' }
 $files = @(
     'SKILL.md', 'README.md', 'VERSION', 'setup.ps1',
     'references/mole-windows.md', 'references/service-software-audit.md',
-    'references/setup-and-persistence.md', 'scripts/invoke-mole.ps1', 'scripts/measure-cpu.ps1'
+    'references/setup-and-persistence.md', 'scripts/invoke-mole.ps1', 'scripts/ensure-mole.ps1', 'scripts/measure-cpu.ps1'
 )
 foreach ($file in $files) {
     if (!(Test-Path -LiteralPath (Join-Path $PSScriptRoot $file) -PathType Leaf)) {
@@ -33,8 +33,5 @@ if ($SkillDirectory) {
         Write-Output "WCB installed: $destination"
     }
 }
-if (Get-Command mo.cmd -CommandType Application -ErrorAction SilentlyContinue) {
-    Write-Output 'Mole is available. Verify with scripts/invoke-mole.ps1 -Action Version.'
-} else {
-    Write-Output 'Core WCB is ready. For optional Mole actions, install the official Mole for Windows CLI and make mo.cmd available on PATH.'
-}
+$mole = & (Join-Path $PSScriptRoot 'scripts/ensure-mole.ps1')
+Write-Output "Mole is ready: $mole"
