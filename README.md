@@ -22,7 +22,7 @@ git clone https://github.com/bahattab/windows-cpu-balance.git "$env:USERPROFILE\
 
 For agents using the shared convention, use `$env:USERPROFILE\.agents\skills\0-windows-cpu-balance` instead. If the destination already exists, back it up and update its contents; do not clone over it. Restart skill discovery or open a new chat if your agent caches installed skills.
 
-Any agent that can read Markdown and run PowerShell can use [SKILL.md](SKILL.md) directly. No API key, cloud account, Python, MCP server, or third-party module is required to run WCB. This public repository can be cloned without GitHub authentication.
+Any agent that can read Markdown and run PowerShell can use [SKILL.md](SKILL.md) directly. Core WCB diagnostics require no API key, cloud account, Python, MCP server, or third-party module. This public repository can be cloned without GitHub authentication.
 
 ## Use
 
@@ -66,3 +66,18 @@ Before changes, the agent records original process affinity/priority, registry s
 ## Version 1.3.0
 
 Added service and installed-software auditing, memory-pressure checks, duplicate-version review, evidence-based uninstall candidates, and explicit removal authorization boundaries. Measurements are diagnostic observations, not a guarantee of improved responsiveness.
+
+## Version 1.4.0
+
+Adds optional Mole for Windows diagnostics, application inventory, cleanup and maintenance previews, and a portable PowerShell setup script. The integration calls the separate [Mole CLI](https://github.com/tw93/Mole/tree/windows) maintained by tw93 under GPL-3.0. The WCB integration and installer source are included here. The Mole release is distributed by its maintainer.
+
+Run from a checkout or extracted release in Windows PowerShell:
+
+```powershell
+.\setup.ps1 -SkillDirectory "$env:USERPROFILE\.agents\skills\0-windows-cpu-balance"
+.\scripts\invoke-mole.ps1 -Action Version
+.\scripts\invoke-mole.ps1 -Action Status
+.\scripts\invoke-mole.ps1 -Action CleanPreview
+```
+
+Choose any supported agent skills directory or give the agent the installed SKILL.md path. Setup validates the package, copies files, and backs up previous package files under %LOCALAPPDATA%\WCB\skill-backups. Restore a backup by copying its files back into the skill directory. Setup can run offline and creates no scheduled tasks. For Mole actions, use an existing official Windows installation or follow the [Windows reference](references/mole-windows.md) for installation and the list of supported commands.

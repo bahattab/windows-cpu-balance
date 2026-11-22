@@ -1,9 +1,9 @@
 ---
 name: 0-windows-cpu-balance
-description: Trigger on the standalone command wcb or an explicit request to use wcb (case-insensitive), as well as 0-windows-cpu-balance. Diagnose Windows CPU contention and configure persistent processor affinity for selected heavy applications while preserving desktop responsiveness. Use for heavy programs, high process/thread counts, background/startup cleanup, service and installed-software audits, uninstall candidate review, CPU core allocation, or persistent CPU rules.
+description: Trigger on the standalone command wcb or an explicit request to use wcb (case-insensitive), as well as 0-windows-cpu-balance. Diagnose Windows CPU contention and configure persistent processor affinity for selected heavy applications while preserving desktop responsiveness. Use for heavy programs, high process/thread counts, background/startup cleanup, service and installed-software audits, uninstall candidate review, CPU core allocation, persistent CPU rules, or Mole for Windows diagnostics and cleanup previews.
 metadata:
   display_name: "0 - windows-cpu-balance"
-  version: "1.3.0"
+  version: "1.4.0"
   platform: "Windows"
   trigger_alias: "wcb"
 ---
@@ -55,3 +55,7 @@ Undo by stopping the monitor, restoring its backup, and restoring recorded live 
 ## Service and software audit
 
 For slowdown, cleanup, startup, or unused-software reviews, read [service and software audit](references/service-software-audit.md). Include service ownership/dependencies, memory pressure, installed software and evidence-based uninstall candidates; inspection alone does not authorize removal.
+
+## Mole for Windows integration
+
+Read [Mole for Windows](references/mole-windows.md) before invoking Mole for system health, app inventory, or maintenance previews. Run the fixed actions in `scripts/invoke-mole.ps1`. Check the edition with `-Action Version`. The optional CLI uses the official Windows mo.cmd on PATH. WCB sampling works independently. Protect active work and keep scheduled runs diagnostic.
